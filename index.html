@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha Space Portfolio</title>
+  <link rel="icon" href="images/alpha-bird-white.png" type="image/png">
+  <link href="https://fonts.cdnfonts.com/css/neuropolitical" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/mundial" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <img src="images/alpha-bird-white.png" alt="Alpha hummingbird logo" class="header-logo">
+        <div class="header-text">
+          <span class="header-title">ALPHA</span>
+          <span class="header-subtitle">Space Portfolio</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="intro">
+      <h1>Explore Our School</h1>
+      <p>Click any space to see a photo. Toggle between views below.</p>
+    </div>
+
+    <div class="view-toggle" role="tablist" aria-label="View mode">
+      <button class="view-btn active" role="tab" aria-selected="true" data-view="floorplan">Floorplan</button>
+      <button class="view-btn" role="tab" aria-selected="false" data-view="list">Room List</button>
+      <button class="view-btn" role="tab" aria-selected="false" data-view="portfolio">Portfolio</button>
+    </div>
+
+    <!-- ═══ FLOORPLAN VIEW ═══ -->
+    <div class="view view--floorplan active" id="view-floorplan" role="tabpanel">
+      <div class="floorplan" role="group" aria-label="Interactive school floorplan">
+
+        <!-- Top: 5 classrooms (largest boxes) -->
+        <button class="room" style="grid-area:midS;" data-img="images/High School.png" data-name="High School Classroom">High School<br>Classroom</button>
+        <button class="room" style="grid-area:highS;" data-img="images/Middle School.png" data-name="Middle School Classroom">Middle School<br>Classroom</button>
+        <button class="room" style="grid-area:lnL1;" data-img="images/Classroom_L1-L2.png" data-name="L1-L2 Classroom">L1-L2<br>Classroom</button>
+        <button class="room" style="grid-area:lnLL;" data-img="images/Classroom_LL.jpg" data-name="LL Classroom">LL<br>Classroom</button>
+        <button class="room" style="grid-area:wonL;" data-img="images/Classroom_ Wonder Lab.jpg" data-name="Wonder Lab Classroom">Wonder Lab<br>Classroom</button>
+
+        <!-- Left admin wing -->
+        <button class="room" style="grid-area:extA;" data-img="images/External Admin.png" data-name="External Admin">External<br>Admin</button>
+        <button class="room" style="grid-area:conf;" data-img="images/Conference Room.png" data-name="Conference Room">Conference<br>Room</button>
+        <button class="room" style="grid-area:aBa1;" data-img="images/Private Bathroom Adult.png" data-name="Adult Bathroom">Adult<br>Bathroom</button>
+        <button class="room" style="grid-area:aBa2;" data-img="images/Bathroom.png" data-name="Bathroom">Bathroom</button>
+        <button class="room" style="grid-area:intA;" data-img="images/Internal Admin.jpg" data-name="Internal Admin">Internal<br>Admin</button>
+
+        <!-- Center -->
+        <button class="room" style="grid-area:comm;" data-img="images/Commons.jpg" data-name="Commons">Commons</button>
+        <button class="room" style="grid-area:din;" data-img="images/Limitless.jpg" data-name="Limitless">Limitless</button>
+        <button class="room" style="grid-area:food;" data-img="images/Food Serving_Kitchenette.jpg" data-name="Food Serving">Food Serving</button>
+        <button class="room" style="grid-area:evt;" data-img="images/Event Space.jpg" data-name="Event Space">Event Space</button>
+
+        <!-- Exterior -->
+        <button class="room" style="grid-area:ext;" data-img="images/Exterior Signage.jpg" data-name="Exterior">Exterior</button>
+
+        <!-- Right wing small rooms -->
+        <button class="room" style="grid-area:pod;" data-img="images/Focus Room.png" data-name="Focus Room">Focus<br>Room</button>
+        <button class="room" style="grid-area:foc1;" data-img="images/Podcast Room.png" data-name="Podcast Room">Podcast<br>Room</button>
+        <button class="room" style="grid-area:foc2;" data-img="images/Focus Room Large.jpg" data-name="Focus Room Large">Focus Room<br>Large</button>
+        <button class="room" style="grid-area:hlth;" data-img="images/Health Room.jpg" data-name="Health Room">Health<br>Room</button>
+        <button class="room" style="grid-area:sens;" data-img="images/Sensory Room.jpg" data-name="Sensory Room">Sensory<br>Room</button>
+        <button class="room" style="grid-area:spec;font-size:clamp(7px,0.82vw,11.5px);" data-img="images/Specialty Reward Space.png" data-name="Specialty Reward Space">Specialty<br>Reward Space</button>
+        <button class="room" style="grid-area:roar;" data-img="images/ROAR.jpg" data-name="ROAR">ROAR</button>
+        <button class="room" style="grid-area:rckt;" data-img="images/Rumble Room.jpg" data-name="Rumble Room">Rumble<br>Room</button>
+
+        <!-- Lower left -->
+        <button class="room" style="grid-area:lob;" data-img="images/Lobby_Reception.jpg" data-name="Lobby &amp; Reception">Lobby &amp;<br>Reception</button>
+        <button class="room" style="grid-area:secV;" data-img="images/Security Vestibule.png" data-name="Security Vestibule">Security<br>Vestibule</button>
+
+        <!-- Center bottom -->
+        <button class="room" style="grid-area:lib;" data-img="images/Dining Area.jpg" data-name="Dining Area">Dining Area</button>
+
+        <!-- Bottom row -->
+        <button class="room" style="grid-area:stfL;" data-img="images/Staff Lounge.jpg" data-name="Staff Lounge">Staff Lounge</button>
+        <button class="room" style="grid-area:kit;" data-img="images/Food Serving_Kitchenette.jpg" data-name="Kitchenette">Kitchenette</button>
+        <button class="room" style="grid-area:worM;" data-img="images/Workshop _ Makerspace.jpg" data-name="Workshop &amp; Makerspace">Workshop &amp;<br>Makerspace</button>
+
+        <!-- Bottom right -->
+        <button class="room" style="grid-area:rumb;" data-img="images/Rocketship.jpg" data-name="Rocketship">Rocketship</button>
+
+      </div>
+    </div>
+
+    <!-- ═══ LIST VIEW ═══ -->
+    <div class="view view--list" id="view-list" role="tabpanel" hidden></div>
+
+    <!-- ═══ PORTFOLIO VIEW ═══ -->
+    <div class="view view--portfolio" id="view-portfolio" role="tabpanel" hidden></div>
+
+  </main>
+
+  <!-- Photo popup -->
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Room photo" hidden>
+    <div class="popup">
+      <button class="popup-close" id="popupClose" aria-label="Close photo">&times;</button>
+      <h2 class="popup-title" id="popupTitle"></h2>
+      <img class="popup-img" id="popupImg" src="" alt="" loading="lazy">
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+/* ── Reset & Base ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --indigo: #141685;
+  --indigo-light: #f0f0f8;
+  --white: #ffffff;
+  --page-bg: #f0f6ff;
+  --black: #111111;
+  --wall: #222222;
+  --hover-fill: rgba(20, 22, 133, 0.15);
+  --hall: #e0e0e0;
+}
+
+html { font-size: 16px; }
+body {
+  font-family: 'Mundial', sans-serif;
+  color: var(--black);
+  background: var(--page-bg);
+  line-height: 1.5;
+}
+
+/* ── Header ───────────────────────────────────────────── */
+.header {
+  background: var(--indigo);
+  color: var(--white);
+  padding: 0 1.5rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+.header-inner { width: 100%; max-width: 1200px; margin: 0 auto; }
+.header-brand { display: flex; align-items: center; gap: 0.75rem; }
+.header-logo { height: 36px; width: auto; }
+.header-text { display: flex; flex-direction: column; line-height: 1.2; }
+.header-title {
+  font-family: 'Neuropolitical', sans-serif;
+  font-size: 1.25rem; font-weight: 700; letter-spacing: 0.15em;
+}
+.header-subtitle {
+  font-family: 'Neuropolitical', sans-serif;
+  font-size: 0.65rem; opacity: 0.85; letter-spacing: 0.08em;
+}
+
+/* ── Main / Intro ─────────────────────────────────────── */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.intro { text-align: center; margin-bottom: 1.5rem; }
+.intro h1 {
+  font-family: 'Neuropolitical', sans-serif;
+  font-size: 1.5rem; color: var(--indigo);
+  margin-bottom: 0.25rem; letter-spacing: 0.05em;
+}
+.intro p { font-size: 1.19rem; color: #555; }
+
+/* ── View Toggle ──────────────────────────────────────── */
+.view-toggle { display: flex; justify-content: center; gap: 0; margin-bottom: 2rem; }
+.view-btn {
+  font-family: 'Mundial', sans-serif;
+  font-size: 1rem; font-weight: 600; letter-spacing: 0.06em;
+  padding: 0.75rem 0; width: 162px; text-align: center;
+  border: 2px solid var(--indigo); background: var(--white); color: var(--indigo);
+  cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+.view-btn:first-child { border-radius: 4px 0 0 4px; }
+.view-btn:last-child { border-radius: 0 4px 4px 0; }
+.view-btn:not(:first-child) { border-left: none; }
+.view-btn.active, .view-btn:hover { background: var(--indigo); color: var(--white); }
+
+/* ── Views ────────────────────────────────────────────── */
+.view[hidden] { display: none; }
+
+/* ══════════════════════════════════════════════════════════
+   FLOORPLAN — 21-column CSS Grid matching reference layout
+
+   Reference image layout (top to bottom, left to right):
+
+   TOP ROW:  MiddleSchool | HighSchool | LN-L1L2 | LN-LL  ‖  Exterior
+   HALLWAY   ─────────────────────────────────────────────  ‖  Exterior
+   LEFT:     ExtAdmin | ConfRoom                           ‖  Exterior
+             AdultBath                                     ‖  Exterior
+             AdultBath | IntAdmin   CENTER:                ‖
+                       | IntAdmin   Commons    EventSpace  ‖  right wing
+   LOBBY                Dining     EventSpace  ‖  small rooms
+   LOBBY                FoodServ               ‖  2×4 grid
+   LOBBY     Library / Limitless               ‖  ROAR/Rocket
+                                               ‖  Rumble
+   SecVest | StaffL | Kitchen | Wonder | Workshop | Rumble
+   ══════════════════════════════════════════════════════════ */
+.floorplan {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows:
+    44px 44px 44px 44px  /* R1-4:  5 classrooms (largest boxes) */
+    6px                  /* R5:    hallway */
+    46px 46px            /* R6-7:  admin, commons, wonder lab, exterior */
+    42px                 /* R8:    bathrooms, library, wonder lab, small rooms */
+    42px                 /* R9:    int-admin, library, wonder lab, small rooms */
+    48px 48px            /* R10-11: lobby, dining, food, evt, roar/rumble */
+    48px 48px;           /* R12-13: sec-vest, bottom row, rocketship */
+  grid-template-areas:
+    "midS midS midS midS highS highS highS highS lnL1 lnL1 lnL1 lnL1 lnLL lnLL lnLL lnLL ext  ext  ext  ext"
+    "midS midS midS midS highS highS highS highS lnL1 lnL1 lnL1 lnL1 lnLL lnLL lnLL lnLL ext  ext  ext  ext"
+    "midS midS midS midS highS highS highS highS lnL1 lnL1 lnL1 lnL1 lnLL lnLL lnLL lnLL ext  ext  ext  ext"
+    "midS midS midS midS highS highS highS highS lnL1 lnL1 lnL1 lnL1 lnLL lnLL lnLL lnLL ext  ext  ext  ext"
+    ".    .    .    .    .     .     .     .     .    .    .    .    .    .    .    .    .    .    .    ."
+    "extA extA conf conf .    comm  comm  comm  comm comm comm wonL wonL wonL wonL .    pod  pod  foc1 foc1"
+    "extA extA conf conf .    comm  comm  comm  comm comm comm wonL wonL wonL wonL .    foc2 foc2 hlth hlth"
+    "aBa1 aBa1 intA intA .    lib   lib   lib   lib  lib  lib  wonL wonL wonL wonL .    sens sens spec spec"
+    "aBa2 aBa2 intA intA .    lib   lib   lib   lib  lib  lib  wonL wonL wonL wonL .    roar roar rckt rckt"
+    "lob  lob  lob  lob  .    din   din   din   din  food food  evt  evt  evt  evt  .    roar roar rckt rckt"
+    "lob  lob  lob  lob  .    din   din   din   din  .    .     evt  evt  evt  evt  .    rumb rumb rumb rumb"
+    "secV secV stfL stfL stfL kit   kit   kit   worM worM worM worM worM worM worM worM rumb rumb rumb rumb"
+    "secV secV stfL stfL stfL kit   kit   kit   worM worM worM worM worM worM worM worM rumb rumb rumb rumb";
+  gap: 3px;
+  background: var(--hall);
+  border: 3px solid var(--wall);
+  padding: 3px;
+  max-width: 1010px;
+  margin: 0 auto;
+}
+
+/* ── Room Buttons ─────────────────────────────────────── */
+.room {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4px 2px;
+  font-family: 'Mundial', sans-serif;
+  font-size: clamp(9px, 1.025vw, 14.4px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--black);
+  background: var(--white);
+  border: 2px solid var(--wall);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.room:hover {
+  background: var(--hover-fill);
+  color: var(--indigo);
+}
+.room:focus-visible {
+  background: var(--hover-fill);
+  color: var(--indigo);
+  outline: 2px solid var(--indigo);
+  outline-offset: -2px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   LIST VIEW
+   ══════════════════════════════════════════════════════════ */
+.list-grid { display: flex; flex-direction: column; max-width: 50%; margin: 0 auto; }
+.list-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #e0e0e8;
+  cursor: pointer; transition: background 0.15s;
+  background: none; border-left: none; border-right: none; border-top: none;
+  width: 100%; text-align: left;
+  font-family: 'Mundial', sans-serif; color: var(--black);
+}
+.list-item:first-child { border-top: 1px solid #e0e0e8; }
+.list-item:hover, .list-item:focus-visible { background: var(--indigo-light); outline: none; }
+.list-item-icon { width: 56px; height: 56px; object-fit: cover; flex-shrink: 0; border: 1px solid #ddd; }
+.list-item-name { font-size: 1.06rem; font-weight: 600; letter-spacing: 0.03em; color: var(--indigo); }
+
+/* ══════════════════════════════════════════════════════════
+   PORTFOLIO VIEW
+   ══════════════════════════════════════════════════════════ */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.portfolio-card {
+  display: flex; flex-direction: column;
+  cursor: pointer; background: none; border: none; padding: 0;
+  font-family: 'Mundial', sans-serif; text-align: left;
+  transition: opacity 0.15s;
+}
+.portfolio-card:hover, .portfolio-card:focus-visible { opacity: 0.85; outline: none; }
+.portfolio-card:focus-visible { outline: 3px solid var(--indigo); outline-offset: 2px; }
+.portfolio-card-label {
+  font-size: 0.875rem; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--indigo);
+  margin-bottom: 0.4rem; padding-left: 2px;
+}
+.portfolio-card-img {
+  width: 100%; aspect-ratio: 4 / 3;
+  object-fit: cover; border: 1px solid #ddd; background: var(--indigo-light);
+}
+
+/* ══════════════════════════════════════════════════════════
+   OVERLAY / POPUP
+   ══════════════════════════════════════════════════════════ */
+.overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.72);
+  display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+}
+.overlay[hidden] { display: none; }
+.popup { background: var(--white); max-width: 720px; width: 100%; position: relative; padding: 1.5rem; }
+.popup-close {
+  position: absolute; top: 0.5rem; right: 0.75rem;
+  background: none; border: none; font-size: 1.75rem;
+  font-family: 'Mundial', sans-serif; line-height: 1;
+  cursor: pointer; color: var(--black); padding: 0.25rem 0.5rem;
+}
+.popup-close:hover { color: var(--indigo); }
+.popup-title {
+  font-family: 'Mundial', sans-serif; font-size: 1rem; font-weight: 600;
+  color: var(--indigo); margin-bottom: 1rem; padding-right: 2rem; letter-spacing: 0.04em;
+}
+.popup-img { width: 100%; height: auto; display: block; }
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .floorplan {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+      "midS  midS  midS  midS  highS highS highS highS"
+      "midS  midS  midS  midS  highS highS highS highS"
+      "lnL1  lnL1  lnL1  lnL1  lnLL  lnLL  lnLL  lnLL"
+      "lnL1  lnL1  lnL1  lnL1  lnLL  lnLL  lnLL  lnLL"
+      "wonL  wonL  wonL  wonL  ext   ext   ext   ext"
+      "wonL  wonL  wonL  wonL  ext   ext   ext   ext"
+      "extA  extA  conf  conf  pod   pod   foc1  foc1"
+      "aBa1  aBa1  intA  intA  foc2  foc2  hlth  hlth"
+      "aBa2  aBa2  intA  intA  sens  sens  spec  spec"
+      "comm  comm  comm  comm  evt   evt   evt   evt"
+      "comm  comm  comm  comm  evt   evt   evt   evt"
+      "lib   lib   lib   lib   roar  roar  rckt  rckt"
+      "din   din   din   food  roar  roar  rckt  rckt"
+      "lob   lob   lob   lob   lob   lob   lob   lob"
+      "secV  secV  stfL  stfL  kit   kit   kit   kit"
+      "worM  worM  worM  worM  rumb  rumb  rumb  rumb"
+      "worM  worM  worM  worM  rumb  rumb  rumb  rumb";
+  }
+  .room { font-size: clamp(7px, 1.6vw, 11px); }
+  .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .floorplan {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "midS  midS  highS highS"
+      "midS  midS  highS highS"
+      "lnL1  lnL1  lnLL  lnLL"
+      "lnL1  lnL1  lnLL  lnLL"
+      "wonL  wonL  ext   ext"
+      "wonL  wonL  ext   ext"
+      "extA  conf  intA  intA"
+      "aBa1  aBa2  comm  comm"
+      "lib   lib   comm  comm"
+      "din   din   din   food"
+      "evt   evt   evt   evt"
+      "pod   foc1  foc2  hlth"
+      "sens  spec  roar  rckt"
+      "lob   lob   lob   lob"
+      "secV  secV  stfL  stfL"
+      "kit   kit   worM  worM"
+      "rumb  rumb  rumb  rumb";
+  }
+  .room { font-size: 9px; min-height: 44px; }
+  .header-title { font-size: 1.1rem; }
+  .intro h1 { font-size: 1.15rem; }
+  .popup { padding: 1rem; }
+  .view-btn { font-size: 0.65rem; padding: 0.5rem 0; width: 100px; }
+  .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
+}
