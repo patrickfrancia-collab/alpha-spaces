@@ -30,33 +30,7 @@
     }
   });
 
-  // ── Build List View ──────────────────────────────────
-  const listContainer = document.getElementById("view-list");
   const sortedRooms = [...rooms].sort((a, b) => a.name.localeCompare(b.name));
-
-  const listGrid = document.createElement("div");
-  listGrid.className = "list-grid";
-  sortedRooms.forEach((room) => {
-    const btn = document.createElement("button");
-    btn.className = "list-item";
-    btn.dataset.name = room.name;
-    btn.dataset.img = room.img;
-
-    const img = document.createElement("img");
-    img.className = "list-item-icon";
-    img.src = room.img;
-    img.alt = "Photo of " + room.name;
-    img.loading = "lazy";
-
-    const label = document.createElement("span");
-    label.className = "list-item-name";
-    label.textContent = room.name;
-
-    btn.appendChild(img);
-    btn.appendChild(label);
-    listGrid.appendChild(btn);
-  });
-  listContainer.appendChild(listGrid);
 
   // ── Build Portfolio View ─────────────────────────────
   const portfolioContainer = document.getElementById("view-portfolio");
@@ -93,14 +67,12 @@
   }
 
   document.querySelectorAll(".floorplan .room").forEach(attachRoomClick);
-  document.querySelectorAll(".list-item").forEach(attachRoomClick);
   document.querySelectorAll(".portfolio-card").forEach(attachRoomClick);
 
   // ── View Toggle ──────────────────────────────────────
   const viewBtns = document.querySelectorAll(".view-btn");
   const views = {
     floorplan: document.getElementById("view-floorplan"),
-    list: document.getElementById("view-list"),
     portfolio: document.getElementById("view-portfolio"),
   };
 
